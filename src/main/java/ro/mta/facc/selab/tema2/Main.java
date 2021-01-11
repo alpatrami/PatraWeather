@@ -1,8 +1,29 @@
 package ro.mta.facc.selab.tema2;
 
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+public class Main extends Application {
     public static void main(String[] args){
-        System.out.println("Worked");
+        launch(args);
+    }
+
+    public void start(Stage primaryStage) {
+        FXMLLoader loader = new FXMLLoader();
+        primaryStage.setTitle("Patra's Weather");
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/view/icon.png")));
+        try {
+            loader.setLocation(this.getClass().getResource("/view/PatraWeatherInterface.fxml"));
+            primaryStage.setScene(new Scene(loader.load()));
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
