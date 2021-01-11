@@ -3,12 +3,10 @@ package ro.mta.facc.selab.tema2.controller;
 import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
-import com.eclipsesource.json.JsonValue;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,11 +19,11 @@ import ro.mta.facc.selab.tema2.model.PatraWeatherModel;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Scanner;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class PatraWeatherController {
 
@@ -116,7 +114,14 @@ public class PatraWeatherController {
                 sw=0;
         }
 
-        for (String s : OTC)
+        ArrayList<String> realName=new ArrayList<String>();
+        for(int i=0; i< OTC.size(); i++)
+        {
+            Locale l=new Locale("ro",OTC.get(i));
+            realName.add(l.getDisplayCountry());
+        }
+
+        for (String s : realName)
         {
             countryBox.getItems().addAll(s);
         }
@@ -136,7 +141,14 @@ public class PatraWeatherController {
         imageId.setImage(null);
 
 
-        String selected = countryBox.getValue();
+
+        Map<String, String> countries = new HashMap<>();
+        for (String iso : Locale.getISOCountries()) {
+            Locale l = new Locale("ro", iso);
+            countries.put(l.getDisplayCountry(), iso);
+        }
+        String selected = countries.get(countryBox.getValue());
+
         ArrayList<String> cities = new ArrayList<String>();
         int sw = 0;
         if (selected != null) {
@@ -229,6 +241,7 @@ public class PatraWeatherController {
         cityName.setText("");
         cityName.setText(_cityName);
 
+
         JsonObject tempObj3=Json.parse(down).asObject().get("main").asObject();
         double _pressure=tempObj3.getDouble("pressure",0);
         StringBuilder appendWind3= new StringBuilder();
@@ -238,9 +251,18 @@ public class PatraWeatherController {
         pressure.setText("");
         pressure.setText(appendWind3.toString());
 
-        String pattern= "EEEEE MMMMM YYYY";
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat(pattern,new Locale("ro",countryBox.getValue()));
-        String date=simpleDateFormat.format(new Date());
+        double dt=Json.parse(down).asObject().getDouble("dt", 0);
+        LocalDateTime ldt= Instant.ofEpochSecond((long)dt).atZone(ZoneId.systemDefault()).toLocalDateTime();
+        String pattern= "EEEE MMMM YYYY HH:mm:ss";
+        Map<String, String> countries = new HashMap<>();
+        for (String iso : Locale.getISOCountries()) {
+            Locale l = new Locale("ro", iso);
+            countries.put(l.getDisplayCountry(), iso);
+        }
+        String selected = countries.get(countryBox.getValue());
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern(pattern,new Locale("ro",selected));
+
+        String date=ldt.format(dateTimeFormatter);
         String _capDate=date.substring(0,1).toUpperCase(Locale.ROOT)+date.substring(1);
         String[] firstCuv=_capDate.split(" ");
         int nr=firstCuv[0].length();

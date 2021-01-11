@@ -7,59 +7,69 @@
 
 <AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.mta.facc.selab.tema2.controller.PatraWeatherController">
    <children>
-      <ChoiceBox fx:id="countryBox" layoutX="61.0" layoutY="76.0" onAction="#setOnHidden" onMouseClicked="#clearCity" prefHeight="25.0" prefWidth="155.0" />
-      <ChoiceBox fx:id="cityBox" layoutX="372.0" layoutY="76.0" onHidden="#parsJson" prefHeight="25.0" prefWidth="155.0" />
-      <Label layoutX="61.0" layoutY="46.0" text="ȚARĂ:" textAlignment="CENTER">
+      <ChoiceBox fx:id="countryBox" layoutX="59.0" layoutY="129.0" onAction="#setOnHidden" onMouseClicked="#clearCity" prefHeight="25.0" prefWidth="155.0" />
+      <ChoiceBox fx:id="cityBox" layoutX="370.0" layoutY="129.0" onHidden="#parsJson" prefHeight="25.0" prefWidth="155.0" />
+      <Label layoutX="59.0" layoutY="99.0" text="ȚARĂ:" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="372.0" layoutY="46.0" text="ORAȘ:" textAlignment="CENTER">
+      <Label layoutX="370.0" layoutY="99.0" text="ORAȘ:" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="cityName" layoutX="49.0" layoutY="151.0" prefHeight="34.0" prefWidth="302.0">
+      <Label fx:id="cityName" layoutX="43.0" layoutY="181.0" prefHeight="34.0" prefWidth="302.0">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="dateId" layoutX="49.0" layoutY="177.0" opacity="0.8" prefHeight="30.0" prefWidth="302.0">
+      <Label fx:id="dateId" layoutX="43.0" layoutY="207.0" opacity="0.8" prefHeight="30.0" prefWidth="302.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="info" layoutX="49.0" layoutY="200.0" opacity="0.8" prefHeight="30.0" prefWidth="302.0">
+      <Label fx:id="info" layoutX="43.0" layoutY="230.0" opacity="0.8" prefHeight="30.0" prefWidth="302.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="pressure" layoutX="393.0" layoutY="268.0" opacity="0.6" prefHeight="17.0" prefWidth="171.0">
+      <Label fx:id="pressure" layoutX="387.0" layoutY="298.0" opacity="0.6" prefHeight="17.0" prefWidth="171.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="humidity" layoutX="393.0" layoutY="285.0" opacity="0.6" prefHeight="17.0" prefWidth="171.0">
+      <Label fx:id="humidity" layoutX="387.0" layoutY="315.0" opacity="0.6" prefHeight="17.0" prefWidth="171.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="wind" layoutX="393.0" layoutY="302.0" opacity="0.6" prefHeight="17.0" prefWidth="171.0">
+      <Label fx:id="wind" layoutX="387.0" layoutY="332.0" opacity="0.6" prefHeight="17.0" prefWidth="171.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="temp" alignment="CENTER" layoutX="167.0" layoutY="241.0" prefHeight="108.0" prefWidth="99.0" textAlignment="CENTER">
+      <Label fx:id="temp" alignment="CENTER" layoutX="161.0" layoutY="271.0" prefHeight="108.0" prefWidth="99.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="35.0" />
          </font>
       </Label>
-      <ImageView fx:id="imageId" fitHeight="100.0" fitWidth="99.0" layoutX="82.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageId" fitHeight="100.0" fitWidth="99.0" layoutX="76.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="symbol" layoutX="258.0" layoutY="269.0" prefHeight="34.0" prefWidth="42.0">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
       <CheckBox fx:id="unitId" layoutX="501.0" layoutY="362.0" mnemonicParsing="false" text="Imperial" />
+      <ImageView fitHeight="79.0" fitWidth="76.0" layoutX="77.0" layoutY="14.0">
+         <image>
+            <Image url="@icon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="168.0" layoutY="21.0" prefHeight="65.0" prefWidth="355.0" text="Patra's Weather">
+         <font>
+            <Font name="System Bold Italic" size="44.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
