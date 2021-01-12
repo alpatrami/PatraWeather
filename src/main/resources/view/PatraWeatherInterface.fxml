@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.mta.facc.selab.tema2.controller.PatraWeatherController">
    <children>
-      <ChoiceBox fx:id="countryBox" layoutX="59.0" layoutY="129.0" onAction="#setOnHidden" onMouseClicked="#clearCity" prefHeight="25.0" prefWidth="155.0" />
+      <ChoiceBox fx:id="countryBox" layoutX="59.0" layoutY="129.0" onAction="#setOnHidden" prefHeight="25.0" prefWidth="155.0" />
       <ChoiceBox fx:id="cityBox" layoutX="370.0" layoutY="129.0" onHidden="#parsJson" prefHeight="25.0" prefWidth="155.0" />
       <Label layoutX="59.0" layoutY="99.0" text="ȚARĂ:" textAlignment="CENTER">
          <font>

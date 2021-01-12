@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//clasa principala a aplicatiei
 public class Main extends Application {
     public static void main(String[] args){
         launch(args);
@@ -15,8 +16,8 @@ public class Main extends Application {
 
     public void start(Stage primaryStage) {
         FXMLLoader loader = new FXMLLoader();
-        primaryStage.setTitle("Patra's Weather");
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/view/icon.png")));
+        primaryStage.setTitle("Patra's Weather");  //setarea Titlului
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/view/icon.png"))); //setarea iconitei
         try {
             loader.setLocation(this.getClass().getResource("/view/PatraWeatherInterface.fxml"));
             primaryStage.setScene(new Scene(loader.load()));

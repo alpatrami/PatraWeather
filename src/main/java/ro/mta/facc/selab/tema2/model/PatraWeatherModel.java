@@ -4,6 +4,9 @@ package ro.mta.facc.selab.tema2.model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+//Clasa Model + settters + getters + constructor
+
+
 public class PatraWeatherModel {
     StringProperty lat;
     StringProperty lon;

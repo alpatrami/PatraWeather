@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 import static org.junit.Assert.*;
 
+
+//Efectuarea testului unitar
 public class PatraWeatherModelTest {
 
     String lat;
@@ -20,12 +22,13 @@ public class PatraWeatherModelTest {
 
     @Before
     public void setUp() throws Exception {
+        //hardcodarea datelor de interes
         countryCode="RU";
         cityName="Razvilka";
         lat="55.5917";
         lon="37.7408";
 
-
+        //citirea din fisier
         ArrayList<String> list=new ArrayList<String>();
         File inputFile=new File("src/main/resources/input.txt");
         Scanner myReader = new Scanner(inputFile);
@@ -45,6 +48,7 @@ public class PatraWeatherModelTest {
 
     }
 
+    //testarea efectiva
     @Test
     public void getLat() {
         assertEquals(testModel.getLat(),this.lat);
