@@ -4,7 +4,11 @@ package ro.mta.facc.selab.tema2.model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-//Clasa Model + settters + getters + constructor
+/**
+ *      Clasa Model din Arhitectura MVC + settters + getters + constructor
+ *
+ *@author Alin Pătrașcu
+ */
 
 
 public class PatraWeatherModel {

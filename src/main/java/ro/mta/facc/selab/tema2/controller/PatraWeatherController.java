@@ -26,7 +26,11 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-//Clasa Controller
+/**
+ *      Clasa Controller din Arhitectura MVC
+ *
+ * @author Alin Pătrașcu
+ */
 
 public class PatraWeatherController {
 
@@ -57,8 +61,11 @@ public class PatraWeatherController {
     @FXML
     private CheckBox unitId=new CheckBox();
 
-    //La initializare: - voi citi fisierul si crea ObservableList cu elemente de tip PatraWeatherModel prin functia readFile()
-    //                 - incarca in ChoiceBox tarile din fisierul de input prin functia loadData()
+    /**
+     *      La initializare: - voi citi fisierul si crea ObservableList cu elemente de tip PatraWeatherModel prin functia readFile()
+     *                       - incarca in ChoiceBox tarile din fisierul de intrare prin functia loadData()
+     */
+
     @FXML
     private void initialize(){
         try {
@@ -70,8 +77,6 @@ public class PatraWeatherController {
         }
         loadData();
     }
-
-
 
 
     private void readFile() throws Exception {
@@ -119,7 +124,9 @@ public class PatraWeatherController {
         }
 
 
-        //Transfor din Codul Iso in numele complet al tarii
+        /**
+         *      Transform Codul ISO in numele complet al tarii
+         */
         ArrayList<String> realName=new ArrayList<String>();
         for(int i=0; i< OTC.size(); i++)
         {
@@ -132,14 +139,19 @@ public class PatraWeatherController {
             countryBox.getItems().addAll(s);
         }
 
-        //am adaugat un listener pentru a se putea schimba automat unitatea de masura la bifarea si debifarea CheckBoxului
+        /**
+         *      Am adaugat un listener pentru a se putea schimba automat unitatea de masura la bifarea si debifarea CheckBoxului
+         */
         unitId.selectedProperty().addListener(
                 (ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
                     String city=cityBox.getValue();
                     String country=countryBox.getValue();
                     URL url = null;
 
-                    //pentru a putea afisa atat in format metric cat si in format imperial
+                    /**
+                     *      Pentru a putea afisa atat in format metric cat si in format imperial am implementat urmatorul if
+                     */
+
                     if(!unitId.isSelected()) {
                         try {
                             url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country + ",&appid=594d4c00d8a8bdeb6b836dc8ad9d6c4c&lang=ro&units=metric");
@@ -177,21 +189,27 @@ public class PatraWeatherController {
 
                     JsonArray items = Json.parse(down).asObject().get("weather").asArray();
 
-                    //obtin descrierea
+                    /**
+                     *      Obtin descrierea
+                     */
                     String _info = items.get(0).asObject().getString("description", "Unknown Item");
                     String _capInfo=_info.substring(0,1).toUpperCase(Locale.ROOT)+_info.substring(1);
                     iconCode=items.get(0).asObject().getString("icon", "Unknown Item");
                     info.setText("");
                     info.setText(_capInfo);
 
-                    //formez linkul in care se poate gasi icon ul specific vremii si il incarc
+                    /**
+                     *      Formez linkul in care se poate gasi icon ul specific vremii si il incarc
+                     */
                     String url1="http://openweathermap.org/img/wn/"+iconCode+"@2x.png";
                     Image img = new Image(url1, true);
                     imageId.setImage(img);
                     imageId.setFitHeight(100);
                     imageId.setFitWidth(100);
 
-                    //afisez unitatea
+                    /**
+                     *      Afisez unitatea
+                     */
                     symbol.setText("");
                     if(!unitId.isSelected()) {
                         symbol.setText("°C");
@@ -200,13 +218,17 @@ public class PatraWeatherController {
                         symbol.setText("°F");
                     }
 
-                    //obtin temperatura
+                    /**
+                     *      Obtin temperatura
+                     */
                     JsonObject tempObj=Json.parse(down).asObject().get("main").asObject();
                     double _temp = tempObj.getDouble("temp", 0);
                     temp.setText("");
                     temp.setText(String.valueOf(_temp));
 
-                    //obtin umiditatea
+                    /**
+                     *      Obtin umiditatea
+                     */
                     double _humidity = tempObj.getDouble("humidity", 0);
                     StringBuilder appendWind= new StringBuilder();
                     appendWind.append("Umiditate: ");
@@ -215,7 +237,9 @@ public class PatraWeatherController {
                     humidity.setText("");
                     humidity.setText(appendWind.toString());
 
-                    //obtin detaliile despre vant
+                    /**
+                     *      Obtin detaliile despre vant
+                     */
                     JsonObject tempObj1=Json.parse(down).asObject().get("wind").asObject();
                     double _wind=tempObj1.getDouble("speed",0);
                     StringBuilder appendWind2= new StringBuilder();
@@ -230,12 +254,16 @@ public class PatraWeatherController {
                     wind.setText("");
                     wind.setText(appendWind2.toString());
 
-                    //obtin numele orasului
+                    /**
+                     *      Obtin numele orasului
+                     */
                     String _cityName = Json.parse(down).asObject().getString("name", "Unknown Item");
                     cityName.setText("");
                     cityName.setText(_cityName);
 
-                    //obtin presiunea
+                    /**
+                     *      Obtin presiunea
+                     */
                     JsonObject tempObj3=Json.parse(down).asObject().get("main").asObject();
                     double _pressure=tempObj3.getDouble("pressure",0);
                     StringBuilder appendWind3= new StringBuilder();
@@ -245,7 +273,9 @@ public class PatraWeatherController {
                     pressure.setText("");
                     pressure.setText(appendWind3.toString());
 
-                    //am trnasformat din valoarea primita in dt in formatul afisat in interfata grafica
+                    /**
+                     *      Am trnasformat din valoarea primita in dt in formatul afisat in interfata grafica
+                     */
                     double dt=Json.parse(down).asObject().getDouble("dt", 0);
                     LocalDateTime ldt= Instant.ofEpochSecond((long)dt).atZone(ZoneId.systemDefault()).toLocalDateTime();
                     String pattern= "EEEE MMMM YYYY HH:mm:ss";
@@ -265,12 +295,11 @@ public class PatraWeatherController {
                     dateId.setText("");
                     dateId.setText(_capDate);
                 });
-
-
-
     }
 
-    //la inchiderea choicebox-ului se ia din ObservableList orasele care apartin tarii alese
+    /**
+     *      La inchiderea choicebox-ului se ia din ObservableList orasele care apartin tarii alese
+     */
     public void setOnHidden(Event event) {
         cityBox.getItems().clear();
         cityName.setText("");
@@ -284,7 +313,9 @@ public class PatraWeatherController {
         imageId.setImage(null);
 
 
-        //in prima faza trebuie ca numele tarii sa fie transformat inapoi in ISO code
+        /**
+         *      In prima faza trebuie ca numele tarii sa fie transformat inapoi in Codul ISO
+         */
         Map<String, String> countries = new HashMap<>();
         for (String iso : Locale.getISOCountries()) {
             Locale l = new Locale("ro", iso);
@@ -292,7 +323,9 @@ public class PatraWeatherController {
         }
         String selected = countries.get(countryBox.getValue());
 
-        //de aici incepe cautarea si adaugarea in ChoiceBox
+        /**
+         *      De aici incepe cautarea si adaugarea in ChoiceBox
+         */
         ArrayList<String> cities = new ArrayList<String>();
         int sw = 0;
         if (selected != null) {
@@ -316,14 +349,19 @@ public class PatraWeatherController {
     }
 
 
-    //aici se efectueaza parsarea Jsonului
+    /**
+     *  Aici se efectueaza parsarea Jsonului
+     *
+     */
     public void parsJson(Event actionEvent) throws IOException{
 
         String city=cityBox.getValue();
         String country=countryBox.getValue();
         URL url;
 
-        //pentru a putea afisa atat in format metric cat si in format imperial
+        /**
+         *      Pentru a putea afisa atat in format metric cat si in format imperial am implementat urmatorul if
+         */
         if(!unitId.isSelected()) {
             url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country + ",&appid=594d4c00d8a8bdeb6b836dc8ad9d6c4c&lang=ro&units=metric");
         }
@@ -338,21 +376,27 @@ public class PatraWeatherController {
 
         JsonArray items = Json.parse(down).asObject().get("weather").asArray();
 
-        //obtin descrierea
+        /**
+         *      Obtin descrierea
+         */
         String _info = items.get(0).asObject().getString("description", "Unknown Item");
         String _capInfo=_info.substring(0,1).toUpperCase(Locale.ROOT)+_info.substring(1);
         iconCode=items.get(0).asObject().getString("icon", "Unknown Item");
         info.setText("");
         info.setText(_capInfo);
 
-        //formez linkul in care se poate gasi icon ul specific vremii si il incarc
+        /**
+         *      Formez linkul in care se poate gasi icon ul specific vremii si il incarc
+         */
         String url1="http://openweathermap.org/img/wn/"+iconCode+"@2x.png";
         Image img = new Image(url1, true);
         imageId.setImage(img);
         imageId.setFitHeight(100);
         imageId.setFitWidth(100);
 
-        //afisez unitatea
+        /**
+         *      Afisez unitatea
+         */
         symbol.setText("");
         if(!unitId.isSelected()) {
             symbol.setText("°C");
@@ -361,13 +405,17 @@ public class PatraWeatherController {
             symbol.setText("°F");
         }
 
-        //obtin temperatura
+        /**
+         *      Obtin temperatura
+         */
         JsonObject tempObj=Json.parse(down).asObject().get("main").asObject();
         double _temp = tempObj.getDouble("temp", 0);
         temp.setText("");
         temp.setText(String.valueOf(_temp));
 
-        //obtin umiditatea
+        /**
+         *      Obtin umiditatea
+         */
         double _humidity = tempObj.getDouble("humidity", 0);
         StringBuilder appendWind= new StringBuilder();
         appendWind.append("Umiditate: ");
@@ -376,7 +424,9 @@ public class PatraWeatherController {
         humidity.setText("");
         humidity.setText(appendWind.toString());
 
-        //obtin detaliile despre vant
+        /**
+         *      Obtin detaliile despre vant
+         */
         JsonObject tempObj1=Json.parse(down).asObject().get("wind").asObject();
         double _wind=tempObj1.getDouble("speed",0);
         StringBuilder appendWind2= new StringBuilder();
@@ -391,12 +441,16 @@ public class PatraWeatherController {
         wind.setText("");
         wind.setText(appendWind2.toString());
 
-        //obtin numele orasului
+        /**
+         *      Obtin numele orasului
+         */
         String _cityName = Json.parse(down).asObject().getString("name", "Unknown Item");
         cityName.setText("");
         cityName.setText(_cityName);
 
-        //obtin presiunea
+        /**
+         *      Obtin presiunea
+         */
         JsonObject tempObj3=Json.parse(down).asObject().get("main").asObject();
         double _pressure=tempObj3.getDouble("pressure",0);
         StringBuilder appendWind3= new StringBuilder();
@@ -406,7 +460,9 @@ public class PatraWeatherController {
         pressure.setText("");
         pressure.setText(appendWind3.toString());
 
-        //am trnasformat din valoarea primita in dt in formatul afisat in interfata grafica
+        /**
+         *      Am trnasformat din valoarea primita in dt in formatul afisat in interfata grafica
+         */
         double dt=Json.parse(down).asObject().getDouble("dt", 0);
         LocalDateTime ldt= Instant.ofEpochSecond((long)dt).atZone(ZoneId.systemDefault()).toLocalDateTime();
         String pattern= "EEEE MMMM YYYY HH:mm:ss";
@@ -425,8 +481,6 @@ public class PatraWeatherController {
         _capDate=_capDate.substring(0,nr+2).toUpperCase(Locale.ROOT)+date.substring(nr+2);
         dateId.setText("");
         dateId.setText(_capDate);
-
-
     }
 
 

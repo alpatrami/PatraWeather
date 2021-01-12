@@ -14,7 +14,12 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-//Efectuarea testului mockito
+/**
+ *      Efectuarea testului mockito
+ *
+ *@author Alin Pătrașcu
+ */
+
 public class PatraWeatherModelTestMockito {
 
     String lat;
@@ -31,7 +36,9 @@ public class PatraWeatherModelTestMockito {
 
         testModelMockito=new PatraWeatherModel(inputStreamReader.readLine(),inputStreamReader.readLine(),inputStreamReader.readLine(),inputStreamReader.readLine());
 
-        //citirea din fisier
+        /**
+         *      Citirea din fisier
+         */
         ArrayList<String> list= new ArrayList<>();
         File inputFile=new File("src/main/resources/input.txt");
         Scanner myReader = new Scanner(inputFile);
@@ -52,7 +59,9 @@ public class PatraWeatherModelTestMockito {
         lon=cuv[3];
     }
 
-    //testarea efectiva
+    /**
+     *      Testarea efectiva
+     */
     @Test
     public void getLat() {
         assertEquals(testModelMockito.getLat(),this.lat);
