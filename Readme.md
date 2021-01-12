@@ -14,10 +14,10 @@ Repository-ul conține o aplicație Java ce oferă informații despre vreme porn
 Informațiile despre fiecare localitate în parte trebuie să se găsească în fișierul  **_src/main/resources/input.txt_**. Datele trebuie să fie în următoarea ordine: **ID**\t**Nume_Oraș**\t**Latitudine**\t**Longitudine**\t**Codul ISO al țării**. Unde \t reprezintă **tab**.
 
 ### Exemplu fișier intrare <a name="subparagraf"></a>
-819827	        Razvilka	55.591667       37.740833	RU
-524901	        Moscow	        55.752220       37.615555	RU
-2973393	        Tarascon	43.805828       4.660280	FR
-2986678	        Ploufragan	48.491409       -2.794580	FR
+819827	        Razvilka	55.591667       37.740833	RU<br/>
+524901	        Moscow	        55.752220       37.615555	RU<br/>
+2973393	        Tarascon	43.805828       4.660280	FR<br/>
+2986678	        Ploufragan	48.491409       -2.794580	FR<br/>
 
 
 ## Realizator <a name="paragraf2"></a>
