@@ -5,7 +5,8 @@
 1. [Scurtă introducere](#introducere)
 2. [Utilizare](#paragraf1)
     1. [Exemplu fișier intrare](#subparagraf)
-3. [Realizator](#paragraf2)
+3. [Diagrama de clase](#paragraf2)
+3. [Realizator](#paragraf3)
 
 ## Scurtă introducere <a name="introducere"></a>
 Repository-ul conține o aplicație Java ce oferă informații despre vreme pornind de la un fișier cu date despre diferite localități din diferite părți ale globului. Aplicația încarcă datele făcând request-uri către API-ul oferit de [OpenWeather](https://openweathermap.org) pentru informațiile necesare. Aplicația folosește [JavaFX](https://openjfx.io/) si [minimal-json](https://github.com/ralfstx/minimal-json). Interfața grafică este intuitivă și ușor de folosit.
@@ -19,8 +20,11 @@ Informațiile despre fiecare localitate în parte trebuie să se găsească în 
 2973393	        Tarascon	43.805828       4.660280	FR<br/>
 2986678	        Ploufragan	48.491409       -2.794580	FR<br/>
 
+## Diagrama de clase <a name="paragraf2"></a>
+![](UML/ClassDiagram.png?raw=true "ClassDiagram")
 
-## Realizator <a name="paragraf2"></a>
+
+## Realizator <a name="paragraf3"></a>
 Std. Pătrașcu Alin-Mihai - Grupa: C114A
 
 

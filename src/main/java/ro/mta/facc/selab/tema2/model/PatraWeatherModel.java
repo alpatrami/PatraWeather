@@ -28,11 +28,11 @@ public class PatraWeatherModel {
 
     public String getLat() { return lat.get(); }
     public StringProperty latProperty() { return lat; }
-    public void setLat(String lat) { this.lat.set(lat); }
+
 
     public String getLon() { return lon.get(); }
     public StringProperty lonProperty() { return lon; }
-    public void setLon(String lon) { this.lon.set(lon); }
+
 
     public String getCityName() {
         return cityName.get();
@@ -40,19 +40,12 @@ public class PatraWeatherModel {
     public StringProperty getCityNameProperty() {
         return cityName;
     }
-    public void setCityName(String cityName)
-    {
-        this.cityName.set(cityName);
-    }
+
 
 
     public String getCountryCode() { return countryCode.get(); }
     public StringProperty getCountryCodeProperty() {
         return countryCode;
-    }
-    public void setCountryCode(String countryCode)
-    {
-        this.countryCode.set(countryCode);
     }
 
 
