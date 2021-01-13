@@ -22,7 +22,7 @@ Informațiile despre fiecare localitate în parte trebuie să se găsească în 
 2973393	        Tarascon	43.805828       4.660280	FR<br/>
 2986678	        Ploufragan	48.491409       -2.794580	FR<br/>
 
-## Diagrama de clase <a name="paragraf2"></a>
+## Diagrame UML <a name="paragraf2"></a>
 
 ### Diagrama de clase <a name="subparagraf1"></a>
 ![](UML/ClassDiagram.png?raw=true "ClassDiagram")
