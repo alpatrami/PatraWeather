@@ -5,7 +5,9 @@
 1. [Scurtă introducere](#introducere)
 2. [Utilizare](#paragraf1)
     1. [Exemplu fișier intrare](#subparagraf)
-3. [Diagrama de clase](#paragraf2)
+3. [Diagrame UML](#paragraf2)
+    1. [Diagrama de clase](#subparagraf1)
+    2. [Diagrama de activități](#subparagraf2)
 3. [Realizator](#paragraf3)
 
 ## Scurtă introducere <a name="introducere"></a>
@@ -21,8 +23,12 @@ Informațiile despre fiecare localitate în parte trebuie să se găsească în 
 2986678	        Ploufragan	48.491409       -2.794580	FR<br/>
 
 ## Diagrama de clase <a name="paragraf2"></a>
+
+### Diagrama de clase <a name="subparagraf1"></a>
 ![](UML/ClassDiagram.png?raw=true "ClassDiagram")
 
+### Diagrama de activități <a name="subparagraf2"></a>
+![](UML/ActivityDiagram.png?raw=true "ActivityDiagram")
 
 ## Realizator <a name="paragraf3"></a>
 Std. Pătrașcu Alin-Mihai - Grupa: C114A
