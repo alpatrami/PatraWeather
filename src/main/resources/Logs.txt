@@ -1,0 +1,20 @@
+<Oras: Geneva> <Tara: Switzerland> <Data/Ora request: VINERI Ianuarie 2021 01:07:06> <Informatii: Ploaie ușoară> <Temperatura: 2.41°C> <IconCode: 10n> <Presiune: 997.0 hPa> <Umiditate: 93.0 %> <Vant: 5.14 metri/sec>
+
+<Oras: Geneva> <Tara: Switzerland> <Data/Ora request: VINERI Ianuarie 2021 01:07:06> <Informatii: Ploaie ușoară> <Temperatura: 2.41°C> <IconCode: 10n> <Presiune: 997.0 hPa> <Umiditate: 93.0 %> <Vant: 5.14 metri/sec>
+
+<Oras: New York City> <Tara: United States> <Data/Ora request: VINERI Ianuarie 2021 01:07:02> <Informatii: Cer senin> <Temperatura: 6.82°C> <IconCode: 01n> <Presiune: 1010.0 hPa> <Umiditate: 53.0 %> <Vant: 2.06 metri/sec>
+
+<Oras: New York City> <Tara: United States> <Data/Ora request: VINERI Ianuarie 2021 01:07:02> <Informatii: Cer senin> <Temperatura: 6.82°C> <IconCode: 01n> <Presiune: 1010.0 hPa> <Umiditate: 53.0 %> <Vant: 2.06 metri/sec>
+
+<Oras: New York City> <Tara: United States> <Data/Ora request: VINERI Ianuarie 2021 01:08:15> <Informatii: Cer senin> <Temperatura: 44.55°F> <IconCode: 01n> <Presiune: 1010.0 hPa> <Umiditate: 53.0 %> <Vant: 4.61 mile/ora>
+
+<Oras: Berlin> <Tara: Germany> <Data/Ora request: VINERI Ianuarie 2021 01:07:23> <Informatii: Cer fragmentat> <Temperatura: 1.74°C> <IconCode: 04n> <Presiune: 1020.0 hPa> <Umiditate: 87.0 %> <Vant: 3.6 metri/sec>
+
+<Oras: Berlin> <Tara: Germany> <Data/Ora request: VINERI Ianuarie 2021 01:07:23> <Informatii: Cer fragmentat> <Temperatura: 1.74°C> <IconCode: 04n> <Presiune: 1020.0 hPa> <Umiditate: 87.0 %> <Vant: 3.6 metri/sec>
+
+<Oras: Tarascon> <Tara: France> <Data/Ora request: VINERI Ianuarie 2021 01:12:53> <Informatii: Câțiva nori> <Temperatura: 5.36°C> <IconCode: 02n> <Presiune: 1017.0 hPa> <Umiditate: 71.0 %> <Vant: 2.06 metri/sec>
+
+<Oras: Tarascon> <Tara: France> <Data/Ora request: VINERI Ianuarie 2021 01:12:53> <Informatii: Câțiva nori> <Temperatura: 5.36°C> <IconCode: 02n> <Presiune: 1017.0 hPa> <Umiditate: 71.0 %> <Vant: 2.06 metri/sec>
+
+<Oras: Tarascon> <Tara: France> <Data/Ora request: VINERI Ianuarie 2021 01:12:54> <Informatii: Câțiva nori> <Temperatura: 41.65°F> <IconCode: 02n> <Presiune: 1017.0 hPa> <Umiditate: 71.0 %> <Vant: 4.61 mile/ora>
+

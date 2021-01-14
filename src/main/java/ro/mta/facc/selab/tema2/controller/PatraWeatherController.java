@@ -36,6 +36,8 @@ public class PatraWeatherController {
 
     private ObservableList<PatraWeatherModel> weatherData=FXCollections.observableArrayList();
 
+
+
     @FXML
     private ChoiceBox<String> countryBox;
     @FXML
@@ -61,21 +63,24 @@ public class PatraWeatherController {
     @FXML
     private CheckBox unitId=new CheckBox();
 
+    public PatraWeatherController() throws IOException {
+    }
+
     /**
      *      La initializare: - voi citi fisierul si crea ObservableList cu elemente de tip PatraWeatherModel prin functia readFile()
      *                       - incarca in ChoiceBox tarile din fisierul de intrare prin functia loadData()
      */
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         try {
             readFile();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         loadData();
+
+
     }
 
 
@@ -229,28 +234,28 @@ public class PatraWeatherController {
                          *      Obtin umiditatea
                          */
                         double _humidity = tempObj.getDouble("humidity", 0);
-                        StringBuilder appendWind = new StringBuilder();
-                        appendWind.append("Umiditate: ");
-                        appendWind.append(_humidity);
-                        appendWind.append(" %");
+                        StringBuilder appendHumidity = new StringBuilder();
+                        appendHumidity.append("Umiditate: ");
+                        appendHumidity.append(_humidity);
+                        appendHumidity.append(" %");
                         humidity.setText("");
-                        humidity.setText(appendWind.toString());
+                        humidity.setText(appendHumidity.toString());
 
                         /**
                          *      Obtin detaliile despre vant
                          */
                         JsonObject tempObj1 = Json.parse(down).asObject().get("wind").asObject();
                         double _wind = tempObj1.getDouble("speed", 0);
-                        StringBuilder appendWind2 = new StringBuilder();
-                        appendWind2.append("Vant: ");
-                        appendWind2.append(_wind);
+                        StringBuilder appendWind = new StringBuilder();
+                        appendWind.append("Vant: ");
+                        appendWind.append(_wind);
                         if (!unitId.isSelected()) {
-                            appendWind2.append(" metri/sec");
+                            appendWind.append(" metri/sec");
                         } else {
-                            appendWind2.append(" mile/ora");
+                            appendWind.append(" mile/ora");
                         }
                         wind.setText("");
-                        wind.setText(appendWind2.toString());
+                        wind.setText(appendWind.toString());
 
                         /**
                          *      Obtin numele orasului
@@ -264,12 +269,12 @@ public class PatraWeatherController {
                          */
                         JsonObject tempObj3 = Json.parse(down).asObject().get("main").asObject();
                         double _pressure = tempObj3.getDouble("pressure", 0);
-                        StringBuilder appendWind3 = new StringBuilder();
-                        appendWind3.append("Presiune: ");
-                        appendWind3.append(_pressure);
-                        appendWind3.append(" hPa");
+                        StringBuilder appendPressure = new StringBuilder();
+                        appendPressure.append("Presiune: ");
+                        appendPressure.append(_pressure);
+                        appendPressure.append(" hPa");
                         pressure.setText("");
-                        pressure.setText(appendWind3.toString());
+                        pressure.setText(appendPressure.toString());
 
                         /**
                          *      Am trnasformat din valoarea primita in dt in formatul afisat in interfata grafica
@@ -292,6 +297,15 @@ public class PatraWeatherController {
                         _capDate = _capDate.substring(0, nr + 2).toUpperCase(Locale.ROOT) + date.substring(nr + 2);
                         dateId.setText("");
                         dateId.setText(_capDate);
+
+                        try {
+                            FileWriter fileWriter= new FileWriter("src/main/resources/Logs.txt",true);
+                            fileWriter.write( "<Oras: "+_cityName+ "> <Tara: " + countryBox.getValue() + "> <Data/Ora request: " + _capDate +"> <Informatii: " + _capInfo +"> <Temperatura: " +_temp + symbol.getText()+"> <IconCode: "+ iconCode +"> <"+appendPressure.toString()+"> <"+appendHumidity.toString()+"> <" + appendWind.toString()+">\n\n");
+                            fileWriter.close();
+                        } catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
                     }
                 });
     }
@@ -416,29 +430,29 @@ public class PatraWeatherController {
          *      Obtin umiditatea
          */
         double _humidity = tempObj.getDouble("humidity", 0);
-        StringBuilder appendWind= new StringBuilder();
-        appendWind.append("Umiditate: ");
-        appendWind.append(_humidity);
-        appendWind.append(" %");
+        StringBuilder appendHumidity= new StringBuilder();
+        appendHumidity.append("Umiditate: ");
+        appendHumidity.append(_humidity);
+        appendHumidity.append(" %");
         humidity.setText("");
-        humidity.setText(appendWind.toString());
+        humidity.setText(appendHumidity.toString());
 
         /**
          *      Obtin detaliile despre vant
          */
         JsonObject tempObj1=Json.parse(down).asObject().get("wind").asObject();
         double _wind=tempObj1.getDouble("speed",0);
-        StringBuilder appendWind2= new StringBuilder();
-        appendWind2.append("Vant: ");
-        appendWind2.append(_wind);
+        StringBuilder appendWind= new StringBuilder();
+        appendWind.append("Vant: ");
+        appendWind.append(_wind);
         if(!unitId.isSelected()) {
-            appendWind2.append(" metri/sec");
+            appendWind.append(" metri/sec");
         }
         else {
-            appendWind2.append(" mile/ora");
+            appendWind.append(" mile/ora");
         }
         wind.setText("");
-        wind.setText(appendWind2.toString());
+        wind.setText(appendWind.toString());
 
         /**
          *      Obtin numele orasului
@@ -452,12 +466,12 @@ public class PatraWeatherController {
          */
         JsonObject tempObj3=Json.parse(down).asObject().get("main").asObject();
         double _pressure=tempObj3.getDouble("pressure",0);
-        StringBuilder appendWind3= new StringBuilder();
-        appendWind3.append("Presiune: ");
-        appendWind3.append(_pressure);
-        appendWind3.append(" hPa");
+        StringBuilder appendPressure = new StringBuilder();
+        appendPressure.append("Presiune: ");
+        appendPressure.append(_pressure);
+        appendPressure.append(" hPa");
         pressure.setText("");
-        pressure.setText(appendWind3.toString());
+        pressure.setText(appendPressure.toString());
 
         /**
          *      Am trnasformat din valoarea primita in dt in formatul afisat in interfata grafica
@@ -480,6 +494,16 @@ public class PatraWeatherController {
         _capDate=_capDate.substring(0,nr+2).toUpperCase(Locale.ROOT)+date.substring(nr+2);
         dateId.setText("");
         dateId.setText(_capDate);
+
+        try {
+            FileWriter fileWriter= new FileWriter("src/main/resources/Logs.txt",true);
+            fileWriter.write( "<Oras: "+_cityName+ "> <Tara: " + countryBox.getValue() + "> <Data/Ora request: " + _capDate +"> <Informatii: " + _capInfo +"> <Temperatura: " +_temp + symbol.getText()+"> <IconCode: "+ iconCode +"> <"+appendPressure.toString()+"> <"+appendHumidity.toString()+"> <" + appendWind.toString()+">\n\n");
+            fileWriter.close();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
 
